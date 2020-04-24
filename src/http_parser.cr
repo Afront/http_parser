@@ -2,12 +2,22 @@
 module HttpParser
   VERSION = "0.1.0"
 
-  class Response
+  class Message
+    property date, cache_control, connection
+
+    # def initialize(@version = Version)
+    # end
+
     def initialize
     end
   end
 
-  class Request
+  class Response < Message
+    def initialize
+    end
+  end
+
+  class Request < Message
     def initialize
     end
   end
