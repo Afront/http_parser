@@ -18,6 +18,8 @@ module HttpParser
   end
 
   class Request < Message
+    property a_im, accept, accept_charset, accept_datetime, accept_encoding, accept_language
+
     def initialize
     end
   end
