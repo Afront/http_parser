@@ -13,6 +13,8 @@ module HttpParser
   end
 
   class Response < Message
+    property age, etag, set_cookie
+
     def initialize
     end
   end
