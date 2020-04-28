@@ -3,25 +3,25 @@ module HttpParser
   VERSION = "0.1.0"
 
   class Message
-    property date, cache_control, connection, content_Length, content_Language, content_encoding
+    property http_version, hash
 
-    # def initialize(@version = Version)
-    # end
+    def initialize(@http_version : String, @hash : Hash)
+      verify_version
+    end
 
-    def initialize
+    def verify_hash
+    end
+
+    def verify_version
     end
   end
 
   class Response < Message
-    property age, etag, set_cookie
-
     def initialize
     end
   end
 
   class Request < Message
-    property a_im, accept, accept_charset, accept_datetime, accept_encoding, accept_language
-
     def initialize
     end
   end
