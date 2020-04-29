@@ -4,25 +4,32 @@ module HttpParser
 
   class Message
     property http_version, hash
+    VERSIONS = Set{0.9, 1.0, 1.1, 2.0, 3.0}
 
-    def initialize(@http_version : String, @hash : Hash)
-      verify_version
+    def initialize(http_version : String | Float, hash : Hash)
+      @http_version = validate_verison(http_version)
+      @hash = validate_hash(hash)
     end
 
-    def verify_hash
+    def validate_hash(hash : Hash)
     end
 
-    def verify_version
+    def validate_version(version : String)
+      raise ArgumentError if !VERSIONS.includes? version
     end
   end
 
   class Response < Message
-    def initialize
+    property code
+
+    def initialize(http_version : String | Float, @hash : Hash)
+      @http_version = validate_verison(http_version)
     end
   end
 
   class Request < Message
-    def initialize
+    def initialize(http_version : String | Float, @hash : Hash)
+      @http_version = validate_verison(http_version)
     end
   end
 
