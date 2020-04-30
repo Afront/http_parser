@@ -29,15 +29,15 @@ module HttpParser
 
   class Request < Message
     property method
-    HTTP_METHODS   = Set{"GET", "HEAD", "POST", "PUT", "DELETE", "CONNECT", "OPTIONS", "TRACE", "PATCH"}
-    HTCPCP_METHODS = Set{"BREW", "PROPFIND", "WHEN"}
+    HTTP_METHODS   = Set{:get, :heard, :post, :put, :delete, :connect, :options}
+    HTCPCP_METHODS = Set{:brew, :propfind, :when}
 
     def initialize(http_version : String | Float, method : String, @hash : Hash)
       @http_version = validate_verison(http_version)
-      @method = validate_method(method)
+      @method = validate_method(method.downcase.to_symbol)
     end
 
-    def validate_method(method : String)
+    def validate_method(method : Symbol)
       raise ArgumentError if !(HTTP_METHODS + HTCPCP_METHODS).includes? method
     end
   end
