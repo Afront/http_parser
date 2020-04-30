@@ -28,8 +28,17 @@ module HttpParser
   end
 
   class Request < Message
-    def initialize(http_version : String | Float, @hash : Hash)
+    property method
+    HTTP_METHODS   = Set{"GET", "HEAD", "POST", "PUT", "DELETE", "CONNECT", "OPTIONS", "TRACE", "PATCH"}
+    HTCPCP_METHODS = Set{"BREW", "PROPFIND", "WHEN"}
+
+    def initialize(http_version : String | Float, method : String, @hash : Hash)
       @http_version = validate_verison(http_version)
+      @method = validate_method(method)
+    end
+
+    def validate_method(method : String)
+      raise ArgumentError if !(HTTP_METHODS + HTCPCP_METHODS).includes? method
     end
   end
 
