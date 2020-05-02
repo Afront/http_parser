@@ -1,3 +1,5 @@
+# Currently cannot test this as my compiler is not working
+
 # TODO: Write documentation for `HttpParser`
 module HttpParser
   VERSION = "0.1.0"
@@ -53,6 +55,12 @@ module HttpParser
   # TODO: Put your code here
   class Parser
     def initialize
+    end
+
+    def parse_request
+    end
+
+    def parse_response
     end
   end
 end
